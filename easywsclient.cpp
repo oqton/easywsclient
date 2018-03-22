@@ -1,4 +1,8 @@
 
+#include "stdafx.h"
+
+#pragma warning(disable : 4996)
+
 #ifdef _WIN32
     #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
         #define _CRT_SECURE_NO_WARNINGS // _CRT_SECURE_NO_WARNINGS for sscanf errors in MSVC2013 Express
@@ -113,6 +117,7 @@ socket_t hostname_connect(const std::string& hostname, int port) {
 class _DummyWebSocket : public easywsclient::WebSocket
 {
   public:
+	~_DummyWebSocket() { }
     void poll(int timeout) { }
     void send(const std::string& message) { }
     void sendBinary(const std::string& message) { }
@@ -175,6 +180,7 @@ class _RealWebSocket : public easywsclient::WebSocket
 
     _RealWebSocket(socket_t sockfd, bool useMask) : sockfd(sockfd), readyState(OPEN), useMask(useMask) {
     }
+	~_RealWebSocket() { }
 
     readyStateValues getReadyState() const {
       return readyState;

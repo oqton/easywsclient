@@ -1,5 +1,4 @@
-#ifndef EASYWSCLIENT_HPP_20120819_MIOFVASDTNUASZDQPLFD
-#define EASYWSCLIENT_HPP_20120819_MIOFVASDTNUASZDQPLFD
+#pragma once
 
 // This code comes from:
 // https://github.com/dhbaird/easywsclient
@@ -27,7 +26,7 @@ class WebSocket {
     static pointer from_url_no_mask(const std::string& url, const std::string& origin = std::string());
 
     // Interfaces:
-    virtual ~WebSocket() { }
+    ~WebSocket() { }
     virtual void poll(int timeout = 0) = 0; // timeout in milliseconds
     virtual void send(const std::string& message) = 0;
     virtual void sendBinary(const std::string& message) = 0;
@@ -68,5 +67,3 @@ class WebSocket {
 };
 
 } // namespace easywsclient
-
-#endif /* EASYWSCLIENT_HPP_20120819_MIOFVASDTNUASZDQPLFD */
